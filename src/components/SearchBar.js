@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-function SearchBar() {
+function SearchBar({ setStocks, stocks }) {
+  const [sort, setSort] = useState('')
+  function handleChange(event) {
+    const filteredStocks = stocks.map((e) => {
+      if(event.target.value === 'Price'){
+        return
+      }
+    })
+  }
+
   return (
     <div>
       <strong>Sort by:</strong>
@@ -10,7 +19,7 @@ function SearchBar() {
           value="Alphabetically"
           name="sort"
           checked={null}
-          onChange={null}
+          onChange={handleChange}
         />
         Alphabetically
       </label>
@@ -20,14 +29,14 @@ function SearchBar() {
           value="Price"
           name="sort"
           checked={null}
-          onChange={null}
+          onChange={handleChange}
         />
         Price
       </label>
       <br />
       <label>
         <strong>Filter:</strong>
-        <select onChange={null}>
+        <select onChange={handleChange}>
           <option value="Tech">Tech</option>
           <option value="Sportswear">Sportswear</option>
           <option value="Finance">Finance</option>
