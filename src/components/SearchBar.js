@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function SearchBar({ setStocks, stocks }) {
-  const [sort, setSort] = useState('')
-  function handleChange(event) {
-    const filteredStocks = stocks.map((e) => {
-      if(event.target.value === 'Price'){
-        return
+
+  function handleChange(){
+    stocks.sort(function(a, b){
+      if(a.name < b.name){
+        return -1
+      }else if(a.name > b.name){
+        return 1
+      }else{
+        return 0
       }
     })
+    return setStocks(stocks)
   }
-
   return (
     <div>
       <strong>Sort by:</strong>
