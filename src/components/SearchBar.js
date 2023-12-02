@@ -2,16 +2,30 @@ import React from "react";
 
 function SearchBar({ setStocks, stocks }) {
 
-  function handleChange(){
-    stocks.sort(function(a, b){
-      if(a.name < b.name){
-        return -1
-      }else if(a.name > b.name){
-        return 1
-      }else{
-        return 0
-      }
-    })
+  function handleChange(event){
+    if(event.target.value === "Alphabetically"){
+      const alphabetically = (stocks.sort(function(a, b){
+        if(a.name < b.name){
+          return -1
+        }else if(a.name > b.name){
+          return 1
+        }else{
+          return 0
+        }
+      }))
+      return alphabetically
+    }else if(event.target.value === "Price"){
+      const price = stocks.sort(function(a, b){
+        if(a.price < b.price){
+          return -1
+        }else if(a.price > b.price){
+          return 1
+        }else{
+          return 0
+        }
+      })
+      return price
+    }
     return setStocks(stocks)
   }
   return (
